@@ -1,0 +1,23 @@
+﻿<Window x:Class="Stereogrammer.LevelAdjust"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Adjust Levels" Height="470" Width="736" WindowStyle="ThreeDBorderWindow" Loaded="Window_Loaded">
+    <Grid>
+        <Slider Height="296" HorizontalAlignment="Left" Margin="23,68,0,0" Name="blackin" VerticalAlignment="Top" Width="26" Maximum="1" Orientation="Vertical" ValueChanged="slider_ValueChanged" />
+        <Label Content="Input" Height="28" HorizontalAlignment="Left" Margin="35,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Black" Height="28" HorizontalAlignment="Left" Margin="12,34,0,0" Name="label2" VerticalAlignment="Top" />
+        <Slider Height="296" HorizontalAlignment="Left" Margin="66,68,0,0" Maximum="1" Name="whitein" Orientation="Vertical" VerticalAlignment="Top" Width="26" Value="1" ValueChanged="slider_ValueChanged" />
+        <Label Content="White" Height="28" HorizontalAlignment="Left" Margin="55,34,0,0" Name="label3" VerticalAlignment="Top" />
+        <Slider Height="296" HorizontalAlignment="Left" Margin="631,68,0,0" Maximum="1" Name="whiteout" Orientation="Vertical" VerticalAlignment="Top" Width="26" Value="1" ValueChanged="slider_ValueChanged" />
+        <Label Content="Output" Height="28" HorizontalAlignment="Left" Margin="613,12,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="White" Height="28" HorizontalAlignment="Left" Margin="620,34,0,0" Name="label5" VerticalAlignment="Top" />
+        <Slider Height="296" HorizontalAlignment="Left" Margin="674,68,0,0" Maximum="10" Name="gamma" Orientation="Vertical" VerticalAlignment="Top" Width="26" Minimum="0" ValueChanged="slider_ValueChanged" Value="1" />
+        <Label Content="Gamma" Height="28" HorizontalAlignment="Left" Margin="663,34,0,0" Name="label6" VerticalAlignment="Top" />
+        <Image Height="363" HorizontalAlignment="Left" Margin="102,12,0,0" Name="imagePreview" Stretch="Fill" VerticalAlignment="Top" Width="445" />
+        <Slider Height="296" HorizontalAlignment="Left" Margin="588,68,0,0" Maximum="1" Name="blackout" Orientation="Vertical" VerticalAlignment="Top" Width="26" ValueChanged="slider_ValueChanged" />
+        <Label Content="Black" Height="28" HorizontalAlignment="Left" Margin="577,34,0,0" Name="label7" VerticalAlignment="Top" />
+        <CheckBox Content="Hard Blacks" Height="16" HorizontalAlignment="Left" Margin="602,395,0,0" Name="bHardBlacks" VerticalAlignment="Top" IsChecked="True" Checked="bHardBlacks_Checked" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="472,391,0,0" Name="buttonCancel" VerticalAlignment="Top" Width="75" IsCancel="True" />
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" Margin="391,391,0,0" Name="buttonOK" VerticalAlignment="Top" Width="75" IsDefault="True" Click="buttonOK_Click" />
+    </Grid>
+</Window>

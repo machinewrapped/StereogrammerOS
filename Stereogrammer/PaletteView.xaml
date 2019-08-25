@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Stereogrammer.PaletteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:Stereogrammer"
+             xmlns:model="clr-namespace:Stereogrammer.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="175" d:DesignWidth="718" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ThumbnailTemplate">
+            <Border BorderThickness="2" BorderBrush="{Binding BorderBrush}" Tag="{Binding}">
+                <Image Source="{Binding Source}" Stretch="Uniform" MinHeight="16" MinWidth="16" HorizontalAlignment="Center" ToolTip="{Binding Description}" ImageFailed="Image_ImageFailed"/>
+                <Border.InputBindings>
+                    <MouseBinding Gesture="LeftClick" Command="{x:Static model:Commands.CmdSelectItem}" CommandParameter="{Binding}"/>
+                    <MouseBinding Gesture="Shift+LeftClick" Command="{x:Static model:Commands.CmdSelectItem}" CommandParameter="{Binding}"/>
+                    <MouseBinding Gesture="Control+LeftClick" Command="{x:Static model:Commands.CmdSelectItem}" CommandParameter="{Binding}"/>
+                    <MouseBinding Gesture="Control+Shift+LeftClick" Command="{x:Static model:Commands.CmdSelectItem}" CommandParameter="{Binding}"/>
+                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnDoubleClick}" CommandParameter="{Binding ThumbnailOf}"/>
+                </Border.InputBindings>
+                <Border.ContextMenu>
+                    <ContextMenu ItemsSource="{Binding SupportedCommands}">
+                        <ContextMenu.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Header" Value="{Binding Path=LongName}" />
+                                <Setter Property="Command" Value="{Binding Path=Command}" />
+                                <Setter Property="CommandTarget" Value="{Binding Path=PlacementTarget,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
+                                <Setter Property="CommandParameter" Value="{Binding Path=PlacementTarget.Tag.ThumbnailOf,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
+                            </Style>
+                        </ContextMenu.ItemContainerStyle>
+                    </ContextMenu>
+                </Border.ContextMenu>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <ItemsControl x:Name="ButtonsPanel">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <ItemsControl x:Name="Thumbnails" ItemTemplate="{StaticResource ThumbnailTemplate}">
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ScrollViewer x:Name="scrollViewer1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" VerticalContentAlignment="Center" >
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" CanHorizontallyScroll="True" DockPanel.Dock="Left"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DockPanel>
+</UserControl>

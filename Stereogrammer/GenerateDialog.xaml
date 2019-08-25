@@ -1,0 +1,42 @@
+﻿<Window x:Class="Stereogrammer.DialogGenerateStereogram"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Stereogrammer"
+        xmlns:alg="clr-namespace:StereogramAlgorithm"
+        Title="Generate Stereogram" Height="480" Width="340" Name="DialogGenerate" MaxHeight="480" MaxWidth="340" WindowStartupLocation="CenterOwner" WindowStyle="ThreeDBorderWindow" VerticalAlignment="Top" SizeToContent="Height" ResizeMode="NoResize" Margin="8" Padding="8" Loaded="GenerateDialog_Loaded" DataContext="{Binding}" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:Stereogrammer" Closing="GenerateDialog_Closing">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="OversampleEnum"
+            MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="alg:Oversample"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Width" HorizontalAlignment="Left" Margin="12,12,0,400" Name="label1" Width="143" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="181,14,0,0" Name="textWidth" VerticalAlignment="Top" Width="120" TabIndex="1" Text="{Binding Path=resolutionX, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" DataContext="{Binding}" LostFocus="textWidth_LostFocus" LostKeyboardFocus="textWidth_LostFocus"></TextBox>
+        <Label Content="Height" Height="28" HorizontalAlignment="Left" Margin="12,41,0,0" Name="label2" VerticalAlignment="Top" Width="143" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="181,43,0,0" Name="textHeight" TabIndex="2" Text="{Binding Path=resolutionY, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="120" LostFocus="textHeight_LostFocus" />
+        <Label Content="Separation" Height="28" HorizontalAlignment="Left" Margin="12,70,0,0" Name="label3" VerticalAlignment="Top" Width="143" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="181,72,0,0" Name="textSeparation" TabIndex="3" Text="{Binding Path=separation, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="120" />
+        <Label Content="Depth" Height="28" HorizontalAlignment="Left" Margin="12,99,0,0" Name="label4" VerticalAlignment="Top" Width="143" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="181,101,0,0" Name="textDepth" TabIndex="4" Text="{Binding Path=FieldDepth, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="120" />
+        <Label Content="Remove Hidden Surfaces" Height="28" HorizontalAlignment="Left" Margin="12,167,0,0" Name="label5" VerticalAlignment="Top" Width="143" />
+        <CheckBox Height="16" HorizontalAlignment="Left" Margin="181,172,0,0" Name="checkBoxHiddenSurfaces" VerticalAlignment="Top" DataContext="{Binding}" IsChecked="{Binding Path=bRemoveHiddenSurfaces, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" TabIndex="6" />
+        <Label Content="Add Focus Dots" Height="28" HorizontalAlignment="Left" Margin="12,201,0,0" Name="label6" VerticalAlignment="Top" Width="143" />
+        <CheckBox Height="16" HorizontalAlignment="Left" Margin="181,206,0,0" Name="checkBoxFocusDots" VerticalAlignment="Top" IsChecked="{Binding Path=bAddConvergenceDots, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" TabIndex="7" />
+        <Label Content="Preserve Aspect Ratio" Height="28" HorizontalAlignment="Left" Margin="12,133,0,0" Name="label10" VerticalAlignment="Top" Width="143" />
+        <CheckBox DataContext="{Binding}" Height="16" HorizontalAlignment="Left" IsChecked="{Binding Path=bPreserveAspectRatio, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Margin="181,138,0,0" Name="checkBoxPreserveAspect" TabIndex="5" VerticalAlignment="Top" Checked="checkBoxPreserveAspect_Checked" />
+        <Label Content="Oversampling" Height="28" HorizontalAlignment="Left" Margin="12,269,0,0" Name="label11" VerticalAlignment="Top" Width="143" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="181,269,0,0" Name="comboOversample" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource OversampleEnum}}" SelectedItem="{Binding Path=oversample, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" TabIndex="9">
+        </ComboBox>
+        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="145,381,0,0" Name="buttonSave" VerticalAlignment="Top" Width="75" Click="buttonSave_Click" TabIndex="0" IsDefault="False" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="64,381,0,0" Name="buttonCancel" VerticalAlignment="Top" Width="75" Click="buttonCancel_Click" TabIndex="99" IsCancel="True" />
+        <Label Content="Depthmap" HorizontalAlignment="Left" Margin="12,303,0,109" Name="label8" Width="143" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="181,303,0,0" Name="comboDepthmap" VerticalAlignment="Top" Width="120" TabIndex="10"/>
+        <Label Content="Texture" HorizontalAlignment="Left" Margin="12,337,0,75" Name="label9" Width="143" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="181,337,0,0" Name="comboTexture" VerticalAlignment="Top" Width="120" TabIndex="11"/>
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" IsDefault="True" Margin="226,381,0,0" Name="buttonOK" TabIndex="0" VerticalAlignment="Top" Width="75" Click="buttonOK_Click" />
+    </Grid>
+</Window>

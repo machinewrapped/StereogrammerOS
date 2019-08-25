@@ -1,0 +1,190 @@
+﻿<Window x:Class="Stereogrammer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:my="clr-namespace:Stereogrammer" 
+        xmlns:model="clr-namespace:Stereogrammer.ViewModel"
+        xmlns:p="clr-namespace:Stereogrammer.Properties"
+        xmlns:alg="clr-namespace:StereogramAlgorithm"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        Title="Stereogrammer" Loaded="Window_Loaded" Name="windowMain" mc:Ignorable="d" 
+        KeyDown="windowMain_KeyDown" d:DesignHeight="585" 
+        Width="1182"
+        Height="609" 
+        WindowStartupLocation="Manual"
+        Closing="windowMain_Closing" 
+        SizeChanged="windowMain_SizeChanged">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="OversampleEnum"
+            MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="alg:Oversample"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid Name="gridTopLevel" IsManipulationEnabled="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" MaxHeight="24" MinHeight="24" />
+            <RowDefinition Height="320*" />
+            <RowDefinition Height="6" MaxHeight="6" MinHeight="6" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="24" MaxHeight="24" MinHeight="24" />
+        </Grid.RowDefinitions>
+        <StatusBar Grid.Row="4" HorizontalAlignment="Stretch" Margin="0" Name="statusBar1" VerticalAlignment="Stretch" />
+        <TabControl Grid.Row="3" HorizontalAlignment="Stretch" Name="tabControlPalette" VerticalAlignment="Stretch" IsManipulationEnabled="True" Margin="2" SelectionChanged="tabControlPalette_SelectionChanged">
+            <TabItem Header="Depthmaps" Name="tabItemDepthmaps" >
+                <my:PaletteView x:Name="depthmapPaletteView" Palette="{Binding Path=DepthmapPalette}">
+                    <my:PaletteView.Buttons>
+                        <Button Command="{x:Static model:Commands.CmdClearPalette}" Content="Clear">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdDefaultResources}" Content="Defaults" CommandParameter="{Binding Path=DepthmapPalette}">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdSelectAndAddFiles}" Content="Add">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                    </my:PaletteView.Buttons>
+                </my:PaletteView>
+            </TabItem>
+            <TabItem Header="Textures" Name="tabItemTextures" VerticalAlignment="Bottom" Margin="0">
+                <my:PaletteView x:Name="texturePaletteView" Palette="{Binding TexturePalette}">
+                    <my:PaletteView.Buttons>
+                        <Button Command="{x:Static model:Commands.CmdClearPalette}" Content="Clear">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdDefaultResources}" Content="Defaults" CommandParameter="{Binding TexturePalette}">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdSelectAndAddFiles}" Content="Add">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                    </my:PaletteView.Buttons>
+                </my:PaletteView>
+            </TabItem>
+            <TabItem Header="Stereograms" Name="tabItemStereograms">
+                <my:PaletteView x:Name="stereogramPaletteView" Palette="{Binding StereogramPalette}">
+                    <my:PaletteView.Buttons>
+                        <Button Command="{x:Static model:Commands.CmdClearPalette}" Content="Clear">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdPreviewStereogram}" Content="Preview">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdGenerateStereogram}" Content="Generate">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                        <Button Command="{x:Static model:Commands.CmdSaveStereogram}" Content="Save">
+                            <Button.LayoutTransform>
+                                <RotateTransform Angle="270" />
+                            </Button.LayoutTransform>
+                        </Button>
+                    </my:PaletteView.Buttons>
+                </my:PaletteView>
+            </TabItem>
+        </TabControl>
+        <ToolBar Name="toolBar1" />
+        <GridSplitter HorizontalAlignment="Stretch" Name="gridSplitter1" VerticalAlignment="Stretch" ResizeDirection="Rows" ShowsPreview="True" HorizontalContentAlignment="Left" Grid.Row="2" Grid.RowSpan="1" ResizeBehavior="PreviousAndNext" />
+        <StackPanel Grid.Row="4" HorizontalAlignment="Stretch" Name="stackPanel1" VerticalAlignment="Stretch" Orientation="Horizontal">
+            <Label Content="Stereogrammer (c) SDB 2011" Name="label1" Padding="1" VerticalContentAlignment="Center" />
+            <Label Name="label3" Padding="1" Width="33" />
+            <ProgressBar Height="10" x:Name="progressBar" Width="400" Visibility="Hidden" />
+            <Label Content="Current Operation" Name="label2" Padding="1" HorizontalContentAlignment="Left" Width="294" VerticalContentAlignment="Center" Visibility="Hidden" />
+            <ProgressBar Name="progressBar1" Margin="4" Width="319" Visibility="Hidden" />
+            <Button Content="Cancel" Name="button5" Margin="1" VerticalContentAlignment="Center" Visibility="Hidden" />
+        </StackPanel>
+        <WrapPanel Grid.RowSpan="1" Name="wrapPanel1" Background="#6E64C2CF">
+            <Grid HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Separation:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Name="separationTextBox" Text="{Binding Path=Options.separation, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="60" Margin="0,2" KeyDown="TextBox_KeyDown" LostFocus="TextBox_LostFocus" />
+            </Grid>
+            <Grid HorizontalAlignment="Left" Name="grid2" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Depth:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Name="depthTextBox" Text="{Binding Path=Options.FieldDepth, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="56" Margin="0,2" KeyDown="TextBox_KeyDown" LostFocus="TextBox_LostFocus" />
+            </Grid>
+            <Grid HorizontalAlignment="Left" Name="gridOversample" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Oversample:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="1" Height="23" Name="comboBoxOversample" ItemsSource="{Binding Source={StaticResource OversampleEnum}}" SelectedItem="{Binding Path=Options.oversample, Mode=TwoWay}" SelectionChanged="comboBoxOversample_SelectionChanged" />
+            </Grid>
+            <Grid HorizontalAlignment="Left" Name="grid3" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Remove Hidden Surfaces:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox Content="" Grid.Column="1" Grid.Row="0" Height="16" HorizontalAlignment="Left" IsChecked="{Binding Path=Options.bRemoveHiddenSurfaces, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Name="bRemoveHiddenSurfacesCheckBox" VerticalAlignment="Center" Click="CheckBox_Click" />
+            </Grid>
+            <Grid HorizontalAlignment="Left" Name="grid4" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Preserve Aspect Ratio:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox Content="" Grid.Column="1" Grid.Row="0" Height="16" HorizontalAlignment="Left" IsChecked="{Binding Path=Options.bPreserveAspectRatio, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Name="bPreserveAspectRatioCheckBox" VerticalAlignment="Center" Click="CheckBox_Click" />
+            </Grid>
+            <Grid HorizontalAlignment="Left" Name="grid5" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Add Convergence Dots:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox Content="" Grid.Column="1" Grid.Row="0" Height="16" HorizontalAlignment="Left" IsChecked="{Binding Path=Options.bAddConvergenceDots, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Name="bAddConvergenceDotsCheckBox" VerticalAlignment="Center" Click="CheckBox_Click" />
+            </Grid>
+            <Button Content="Generate" HorizontalAlignment="Left" Command="{x:Static model:Commands.CmdGenerateStereogram}" />
+            <Button Content="Defaults" HorizontalAlignment="Left" Command="{x:Static model:Commands.CmdDefaultSettings}" />
+            <Button Content="About" HorizontalAlignment="Left" Command="{x:Static model:Commands.CmdAboutBox}" />
+        </WrapPanel>
+        <my:PreviewPane Grid.Row="1" x:Name="previewMainPanel"/>
+    </Grid>
+</Window>
+
+    
