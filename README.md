@@ -10,3 +10,4 @@ I wanted another project to help me learn C# and .NET (specifically, Windows Pre
 
 Whether anybody out there still cares about the Autostereogram and would appreciate a utility for generating them remains to be discovered.
 
+If you just want to use the application, download Stereogrammer64.zip and unzip/install.
