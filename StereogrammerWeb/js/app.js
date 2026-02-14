@@ -40,6 +40,8 @@ const fixedHeightInput = $('#fixed-height');
 const generateBtn      = $('#generate-btn');
 const saveBtn          = $('#save-btn');
 const statusEl         = $('#status-message');
+const progressBar      = $('#progress-bar');
+const progressContainer= $('#progress-container');
 
 // Texture panel
 const textureGrid    = $('#texture-grid');
@@ -257,12 +259,15 @@ async function onGenerate() {
     await generate(outputWidth, outputHeight, true);
 }
 
+function updateProgress(value) {
+    progressBar.style.width = `${value * 100}%`;
+}
+
 async function generate(outputWidth, outputHeight, displayOnCanvas) {
     setStatus('Generating...');
     generateBtn.disabled = true;
-
-    // Small delay to let the UI update
-    await new Promise(r => setTimeout(r, 20));
+    progressContainer.classList.remove('hidden');
+    updateProgress(0);
 
     try {
         const separation = Math.round(state.separationRatio * outputWidth);
@@ -278,7 +283,7 @@ async function generate(outputWidth, outputHeight, displayOnCanvas) {
         const texturePixels = await getTexturePixels(tileWidth, tileHeight);
 
         // Generate
-        const { imageData, elapsed } = generateStereogram({
+        const { imageData, elapsed } = await generateStereogram({
             depthBytes, depthWidth, depthHeight,
             texturePixels, textureWidth: tileWidth, textureHeight: tileHeight,
             outputWidth, outputHeight,
@@ -286,7 +291,7 @@ async function generate(outputWidth, outputHeight, displayOnCanvas) {
             fieldDepth: state.fieldDepth,
             removeHidden: state.removeHidden,
             convergenceDots: state.convergenceDots,
-        });
+        }, updateProgress);
 
         if (displayOnCanvas) {
             outputCanvas.width = outputWidth;
@@ -296,14 +301,18 @@ async function generate(outputWidth, outputHeight, displayOnCanvas) {
         }
 
         setStatus(`Generated in ${elapsed.toFixed(0)} ms (${outputWidth}×${outputHeight})`);
-        generateBtn.disabled = false;
-
         return imageData;
     } catch (err) {
         setStatus('Error: ' + err.message);
         console.error(err);
-        generateBtn.disabled = false;
         return null;
+    } finally {
+        generateBtn.disabled = false;
+        setTimeout(() => {
+            if (generateBtn.disabled) return;
+            progressContainer.classList.add('hidden');
+            updateProgress(0);
+        }, 500);
     }
 }
 

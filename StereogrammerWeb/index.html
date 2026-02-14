@@ -12,8 +12,20 @@
 
         <!-- Header -->
         <header class="header">
-            <h1>◈ Stereogrammer Web</h1>
+            <div class="header-title-wrapper">
+                <h1>◈ Stereogrammer Web</h1>
+                <div class="info-tooltip">
+                    <p>No cookies. No tracking. Runs entirely in your browser.</p>
+                    <p><a href="https://github.com/machinewrapped/StereogrammerOS" target="_blank">View on GitHub</a></p>
+                    <div class="divider"></div>
+                    <p class="small">Algorithm: Simon Booth (1996-2026)</p>
+                    <p class="small">Web Version: Claude 4.6 Opus & Gemini 3 Pro</p>
+                </div>
+            </div>
             <span id="status-message" class="header-status">Upload a depth map to begin</span>
+            <div id="progress-container" class="progress-container hidden">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
         </header>
 
         <!-- Sidebar -->
