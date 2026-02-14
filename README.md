@@ -1,6 +1,8 @@
 # StereogrammerOS
 Application for generating stereogram images.
 
+<img width="3810" height="1888" alt="Stereogrammer Web" src="https://github.com/user-attachments/assets/7890f293-1040-4b69-bf83-38d7c0ac9d52" />
+
 There are two versions of the app:
 
 ## A web version that can be run in your browser:
@@ -8,8 +10,6 @@ https://machinewrapped.github.io/StereogrammerOS/
 
 ## A Windows native .NET application
 Download Stereogrammer64.zip and unzip/install.
-
-<img width="3810" height="1888" alt="Stereogrammer Web" src="https://github.com/user-attachments/assets/7890f293-1040-4b69-bf83-38d7c0ac9d52" />
 
 # Stereogrammer
 
