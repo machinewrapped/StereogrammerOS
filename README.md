@@ -9,7 +9,7 @@ https://machinewrapped.github.io/StereogrammerOS/
 ## A Windows native .NET application
 Download Stereogrammer64.zip and unzip/install.
 
-Stereogrammer
+# Stereogrammer
 
 My final-year project at University was a program to generate Autostereograms, which at the time were enjoying a period of popularity. The end result was a Win95 application which could generate Autostereogram images (i.e. 2D images in which depth can be perceived by a trick of focussing the eyes), using random dot textures or any arbitrary bitmap.  My research into the psychology and mathematics behind the Autostereogram resulted in a new algorithm for their generation, which I named the Horoptic algorithm, and which – to my eyes at least – produces better results than the existing algorithms I discovered at the time.
 
