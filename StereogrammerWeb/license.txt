@@ -1,0 +1,75 @@
+Stereogrammer (Open Source) Copyright 2019 Simon Booth
+http://machinewrapped.wordpress.com/stereogrammer/
+
+Horoptic Algorithm
+Copyright 1996-2012 Simon Booth
+
+Techmind Algorithm - removed -
+Copyright 1995-2001 Andrew Steer
+http://www.techmind.org/stereo/stech.html
+
+Constraint Satisfaction Algorithm - removed -
+Copyright 1993 I. H. Witten, S. Inglis and H. W. Thimbleby
+http://www.cs.waikato.ac.nz/pubs/wp/1993/#9302
+
+Look-Back Algorithm - removed -
+Copyright 1979 Christopher Tyler & Maureen Clarke, 
+
+Incorporates Textures from Infinite Fish
+http://infinitefish.com/textures/
+
+Incorporates Depth Maps from Simon Booth
+Copyright 1995-2012, all rights reserved.
+
+Licensing
+
+THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+
+DEFINITIONS
+
+"Contributor" means any person or entity that distributes the Program. 
+
+"Program" means the Contributions distributed in accordance with this Agreement. 
+
+"Recipient" means anyone who receives the Program under this Agreement, including all Contributors. 
+
+1. GRANT OF RIGHTS
+
+a) Subject to the terms of this Agreement, the author hereby grants Recipient a non-exclusive, worldwide, royalty-free copyright license to reproduce, use, publicly display, publicly perform and distribute the Program for personal, academic and non-commercial use.
+
+b) Recipient understands that although each Contributor grants the licenses to its Contributions set forth herein, no assurances are provided by any Contributor that the Program does not infringe the patent or other intellectual property rights of any other entity. Each Contributor disclaims any liability to Recipient for claims brought by any other entity based on infringement of intellectual property rights or otherwise. As a condition to exercising the rights and licenses granted hereunder, each Recipient hereby assumes sole responsibility to secure any other intellectual property rights needed, if any. For example, if a third party patent license is required to allow Recipient to distribute the Program, it is Recipient's responsibility to acquire that license before distributing the Program.
+
+c) Each Contributor represents that to its knowledge it has sufficient copyright rights in its Contribution, if any, to grant the copyright license set forth in this Agreement.
+
+2. REQUIREMENTS 
+
+A Contributor may choose to distribute the Program in object code form under its own license agreement, provided that: 
+
+a) it complies with the terms and conditions of this Agreement; and
+
+b) its license agreement:
+
+i) effectively disclaims on behalf of all Contributors all warranties and conditions, express and implied, including warranties or conditions of title and non-infringement, and implied warranties or conditions of merchantability and fitness for a particular purpose; 
+
+ii) effectively excludes on behalf of all Contributors all liability for damages, including direct, indirect, special, incidental and consequential damages, such as lost profits; 
+
+iii) a copy of this Agreement must be included with each copy of the Program. 
+
+Contributors may not remove or alter any copyright notices contained within the Program.
+
+Each Contributor must identify itself as the originator of its Contribution, if any, in a manner that reasonably allows subsequent Recipients to identify the originator of the Contribution. 
+
+5. NO WARRANTY
+
+EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, THE PROGRAM IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Each Recipient is solely responsible for determining the appropriateness of using and distributing the Program and assumes all risks associated with its exercise of rights under this Agreement, including but not limited to the risks and costs of program errors, compliance with applicable laws, damage to or loss of data, programs or equipment, and unavailability or interruption of operations. 
+
+6. DISCLAIMER OF LIABILITY 
+
+EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, NEITHER RECIPIENT NOR ANY CONTRIBUTORS SHALL HAVE ANY LIABILITY FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
+
+7. GENERAL
+
+If any provision of this Agreement is invalid or unenforceable under applicable law, it shall not affect the validity or enforceability of the remainder of the terms of this Agreement, and without further action by the parties hereto, such provision shall be reformed to the minimum extent necessary to make such provision valid and enforceable. 
+
+All Recipient's rights under this Agreement shall terminate if it fails to comply with any of the material terms or conditions of this Agreement and does not cure such failure in a reasonable period of time after becoming aware of such noncompliance. If all Recipient's rights under this Agreement terminate, Recipient agrees to cease use and distribution of the Program as soon as reasonably practicable. However, Recipient's obligations under this Agreement and any licenses granted by Recipient relating to the Program shall continue and survive. 
+

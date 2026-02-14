@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stereogrammer Web — Create Stereograms in Your Browser</title>
+    <meta name="description" content="Generate stereogram images from depth maps and textures directly in your browser. Upload a depth map, choose a texture, and create stunning autostereograms.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+
+        <!-- Header -->
+        <header class="header">
+            <h1>◈ Stereogrammer Web</h1>
+            <span id="status-message" class="header-status">Upload a depth map to begin</span>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <!-- Depth Map -->
+            <div class="panel-section">
+                <span class="panel-title">Depth Map</span>
+                <div class="depth-upload-area" onclick="document.getElementById('depth-upload').click()">
+                    <img id="depth-preview" class="hidden" alt="Depth map preview">
+                    <span class="upload-icon">🗺️</span>
+                    <span class="upload-text">Click to upload depth map</span>
+                    <span id="depth-label" class="upload-text"></span>
+                </div>
+                <input type="file" id="depth-upload" accept="image/*">
+            </div>
+
+            <!-- Actions (near top for visibility) -->
+            <div class="panel-section">
+                <button id="generate-btn" class="btn btn-primary btn-full" disabled>⚡ Generate</button>
+                <button id="save-btn" class="btn btn-secondary btn-full" disabled>💾 Save PNG</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Textures -->
+            <div class="panel-section">
+                <span class="panel-title">Texture Library</span>
+                <div id="texture-grid" class="texture-grid"></div>
+                <button id="add-texture-btn" class="btn btn-secondary btn-full">+ Add Texture</button>
+                <input type="file" id="texture-upload" accept="image/*">
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Generation Options -->
+            <div class="panel-section">
+                <span class="panel-title">Options</span>
+
+                <div class="control-group">
+                    <label>Separation Ratio</label>
+                    <div class="control-row">
+                        <input type="range" id="sep-slider" min="0.05" max="0.25" step="0.005" value="0.1">
+                        <span id="sep-value" class="range-value">0.1</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Field Depth</label>
+                    <div class="control-row">
+                        <input type="range" id="depth-slider" min="0.05" max="1.0" step="0.01" value="0.33">
+                        <span id="depth-value" class="range-value">0.33</span>
+                    </div>
+                </div>
+
+                <label class="checkbox-row">
+                    <input type="checkbox" id="hidden-check" checked>
+                    Remove Hidden Surfaces
+                </label>
+
+                <label class="checkbox-row">
+                    <input type="checkbox" id="dots-check" checked>
+                    Convergence Dots
+                </label>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Scale Mode -->
+            <div class="panel-section">
+                <span class="panel-title">Output Scale</span>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="scale-mode" value="viewport" checked>
+                        Fit Window
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="scale-mode" value="fixed">
+                        Fixed Size
+                    </label>
+                </div>
+                <div id="fixed-controls" class="hidden">
+                    <div class="fixed-inputs">
+                        <input type="number" id="fixed-width" value="1920" min="320" max="7680" placeholder="Width">
+                        <input type="number" id="fixed-height" value="1080" min="180" max="4320" placeholder="Height">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Output -->
+        <main id="output-area" class="output-area">
+            <div class="output-wrapper">
+                <canvas id="output-canvas" width="960" height="540"></canvas>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Export Resolution Dialog -->
+    <div id="export-overlay" class="overlay hidden">
+        <div class="export-dialog">
+            <h2>Export Stereogram</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Choose the resolution for the exported PNG image.
+            </p>
+            <div class="fixed-inputs">
+                <input type="number" id="export-width" value="1920" min="320" max="7680" placeholder="Width">
+                <input type="number" id="export-height" value="1080" min="180" max="4320" placeholder="Height">
+            </div>
+            <div class="dialog-buttons">
+                <button id="export-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="export-generate" class="btn btn-primary">Export</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
