@@ -584,3 +584,80 @@ input[type="number"]:focus {
 .btn-primary:hover:not(:disabled) {
     animation: none;
 }
+
+/* ── Progress Bar ──────────────────────────────────────────── */
+.progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #ec4899);
+    width: 0%;
+    transition: width 0.2s linear;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ── Info Tooltip ──────────────────────────────────────────── */
+.header-title-wrapper {
+    position: relative;
+    cursor: help;
+}
+
+.info-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 12px;
+    width: 280px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    z-index: 100;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.header-title-wrapper:hover .info-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.info-tooltip p {
+    margin-bottom: 6px;
+}
+
+.info-tooltip p:last-child {
+    margin-bottom: 0;
+}
+
+.info-tooltip a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.info-tooltip a:hover {
+    text-decoration: underline;
+}
+
+.info-tooltip .small {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
