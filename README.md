@@ -1,7 +1,7 @@
 # StereogrammerOS
 Application for generating stereogram images.
 
-<img width="3810" height="1888" alt="Stereogrammer Web" src="https://github.com/user-attachments/assets/7890f293-1040-4b69-bf83-38d7c0ac9d52" />
+<img width="3800" height="1850" alt="Stereogrammer Web" src="https://github.com/user-attachments/assets/464c1ba0-c3e5-49c1-a806-0266ccacd9d0" />
 
 There are two versions of the app:
 
