@@ -41,7 +41,7 @@ self.onmessage = function(e) {
         const depthLine = new Float32Array(lineWidth);
 
         // Constants used in the loop
-        const invertedTextureWidth = 1 / textureWidth; // optimization if needed, but modulo is fast enough usually
+
         
         // Report progress every 5%
         const progressStep = Math.ceil(rows / 20);
@@ -110,13 +110,11 @@ self.onmessage = function(e) {
                             const checkLeft = i - t >= 0 && depthLine[i - t] < zt;
                             const checkRight = i + t < lineWidth && depthLine[i + t] < zt;
                             
-                            if ((i - t >= 0 && !checkLeft) || (i + t < lineWidth && !checkRight)) {
+                            const occludedLeft = i - t >= 0 && depthLine[i - t] >= zt;
+                            const occludedRight = i + t < lineWidth && depthLine[i + t] >= zt;
+                            
+                            if (occludedLeft || occludedRight) {
                                 visible = false;
-                            } else if (i - t >= 0 && i + t < lineWidth) {
-                                // Both exist, check strictly
-                                if (!(depthLine[i - t] < zt && depthLine[i + t] < zt)) {
-                                    visible = false;
-                                }
                             }
                             t++;
                         }
@@ -176,7 +174,7 @@ self.onmessage = function(e) {
         // Post result back
         self.postMessage({
             type: 'done',
-            pixels: pixels, // Transferable if we want, but copying is fine for one frame
+            pixels: pixels, // Transferred to main thread to avoid copying
             elapsed: elapsed
         }, [pixels.buffer]); // Transfer the buffer to save memory
 

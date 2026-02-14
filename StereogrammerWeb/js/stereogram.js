@@ -21,10 +21,11 @@
  * @param {boolean}    opts.convergenceDots – Draw convergence guide dots
  * @param {function}   [onProgress]         - Optional callback (0..1)
  * @returns {Promise<{imageData: ImageData, elapsed: number}>} The generated stereogram
+ * @description Note: depthBytes and texturePixels buffers are transferred to the worker and will be detached/unusable in the main thread.
  */
 export function generateStereogram(opts, onProgress) {
     return new Promise((resolve, reject) => {
-        const worker = new Worker('js/stereogram.worker.js');
+        const worker = new Worker(new URL('stereogram.worker.js', import.meta.url));
 
         // Prepare message payload
         const message = {

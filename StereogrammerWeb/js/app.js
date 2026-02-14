@@ -309,6 +309,7 @@ async function generate(outputWidth, outputHeight, displayOnCanvas) {
     } finally {
         generateBtn.disabled = false;
         setTimeout(() => {
+            if (generateBtn.disabled) return;
             progressContainer.classList.add('hidden');
             updateProgress(0);
         }, 500);
